@@ -1,0 +1,20 @@
+import pandas as pn 
+from sklearn.preprocessing import StandardScaler , MinMaxScaler
+read_data = pn.read_excel('numerical_scaling_dataset.xlsx')
+copydata = read_data.copy()
+print(copydata.head())
+ss = StandardScaler()
+mm = MinMaxScaler()
+copydata['Salary_Encoded'] = ss.fit_transform(copydata[['Salary']])
+copydata['Age_Encoded'] = ss.fit_transform(copydata[['Age']])
+copydata['ExperienceYears_Encoded'] = ss.fit_transform(copydata[['Experience_Years']])
+copydata['Marks_Encoded'] = ss.fit_transform(copydata[['Marks']])
+print('\n Standard Scaled DataFrame:')
+print(copydata[['Student_ID','Age','Age_Encoded','Salary','Salary_Encoded','Experience_Years','ExperienceYears_Encoded','Marks','Marks_Encoded']])
+print("\n MinMax DataFrame:")
+copydata['Age_Encoded'] = mm.fit_transform(copydata[['Age']])
+copydata['Salary_Encoded'] = mm.fit_transform(copydata[['Salary']])
+copydata['ExperienceYears_Encoded'] = mm.fit_transform(copydata[['Experience_Years']])
+copydata['Marks_Encoded'] = mm.fit_transform(copydata[['Marks']])
+print(copydata[['Student_ID','Age','Age_Encoded','Salary','Salary_Encoded','Experience_Years','ExperienceYears_Encoded','Marks','Marks_Encoded']])
+
