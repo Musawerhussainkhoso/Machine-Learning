@@ -2,6 +2,8 @@ import pandas as pn
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
 read_file = pn.read_excel("Diabetes_Prediction_Dataset.xlsx")
 copy_file = read_file.copy()
 print(copy_file.head())
@@ -36,6 +38,22 @@ userinput = pn.DataFrame(
 user_input_scaled = Ss.transform(userinput)
 prediction = model.predict(user_input_scaled)[0]
 if prediction == 0:
-    print("The person is not diabetic:")
+    print("The person is not diabetic!")
 else:
-    print("The person is diabetic:")    
+    print("The person is diabetic!")  
+
+Kn_model = KNeighborsClassifier(n_neighbors=5)
+Kn_model.fit(X_train , y_train)
+kn_prediction = Kn_model.predict(user_input_scaled)[0]
+if kn_prediction == 0:
+    print("The person is not diabetic according to KNN!")   
+else:
+    print("The person is diabetic according to KNN!")      
+
+tree_model = DecisionTreeClassifier()     
+tree_model.fit(X_train , y_train)
+tree_prediction = tree_model.predict(user_input_scaled)[0]
+if tree_prediction == 0:
+    print("The person is not diabetic according to Decision Tree!")   
+else:
+    print("The person is diabetic according to Decision Tree!")      
