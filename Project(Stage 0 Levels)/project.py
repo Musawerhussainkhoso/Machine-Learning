@@ -5,6 +5,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score,f1_score,confusion_matrix
+from sklearn.metrics import mean_absolute_error, mean_squared_error
+import numpy as np
 read_file = pn.read_excel("Diabetes_Prediction_Dataset.xlsx")
 copy_file = read_file.copy()
 print(copy_file.head())
@@ -85,3 +87,24 @@ print("Decision Tree Recall:", recall_score(y_test, y_pred_tree))
 print("Decision Tree F1 Score:", f1_score(y_test, y_pred_tree))
 print("Confusion Matrix for Decision Tree:")
 print(confusion_matrix(y_test, y_pred_tree))
+# Calculate Mean Absolute Error, Mean Squared Error and Root Mean Squared Error for Logistic Regression
+mae = mean_absolute_error(y_test, y_pred_lr)
+mse = mean_squared_error(y_test, y_pred_lr)
+rmse = np.sqrt(mse)
+print("Logistic Regression MAE:", mae)
+print("Logistic Regression MSE:", mse)
+print("Logistic Regression RMSE:", rmse)
+# Calculate Mean Absolute Error, Mean Squared Error and Root Mean Squared Error for KNN
+mae_kn = mean_absolute_error(y_test, y_pred_kn)
+mse_kn = mean_squared_error(y_test, y_pred_kn)
+rmse_kn = np.sqrt(mse_kn)
+print("KNN MAE:", mae_kn)
+print("KNN MSE:", mse_kn)
+print("KNN RMSE:", rmse_kn)
+# Calculate Mean Absolute Error, Mean Squared Error and Root Mean Squared Error for Decision Tree
+mae_tree = mean_absolute_error(y_test, y_pred_tree)
+mse_tree = mean_squared_error(y_test, y_pred_tree)
+rmse_tree = np.sqrt(mse_tree)
+print("Decision Tree MAE:", mae_tree)
+print("Decision Tree MSE:", mse_tree)
+print("Decision Tree RMSE:", rmse_tree)
