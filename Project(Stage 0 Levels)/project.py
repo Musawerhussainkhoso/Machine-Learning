@@ -4,6 +4,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score, precision_score, recall_score,f1_score,confusion_matrix
 read_file = pn.read_excel("Diabetes_Prediction_Dataset.xlsx")
 copy_file = read_file.copy()
 print(copy_file.head())
@@ -56,4 +57,31 @@ tree_prediction = tree_model.predict(user_input_scaled)[0]
 if tree_prediction == 0:
     print("The person is not diabetic according to Decision Tree!")   
 else:
-    print("The person is diabetic according to Decision Tree!")      
+    print("The person is diabetic according to Decision Tree!")
+
+#Logistic Regression evaluation
+y_pred_lr = model.predict(X_test)
+print("Logistic Regression Accuracy:", accuracy_score(y_test, y_pred_lr))
+print("Logistic Regression Precision:", precision_score(y_test, y_pred_lr))
+print("Logistic Regression Recall:", recall_score(y_test, y_pred_lr))
+print("Logistic Regression F1 Score:", f1_score(y_test, y_pred_lr))
+print("Confusion Matrix for Logistic Regression:")
+print(confusion_matrix(y_test, y_pred_lr))
+
+#KNN evaluation
+y_pred_kn = Kn_model.predict(X_test)
+print("KNN Accuracy:", accuracy_score(y_test, y_pred_kn))
+print("KNN Precision:", precision_score(y_test, y_pred_kn))
+print("KNN Recall:", recall_score(y_test, y_pred_kn))
+print("KNN F1 Score:", f1_score(y_test, y_pred_kn))
+print("Confusion Matrix for KNN:")
+print(confusion_matrix(y_test, y_pred_kn))
+
+#Decision Tree evaluation
+y_pred_tree = tree_model.predict(X_test)
+print("Decision Tree Accuracy:", accuracy_score(y_test, y_pred_tree))
+print("Decision Tree Precision:", precision_score(y_test, y_pred_tree))
+print("Decision Tree Recall:", recall_score(y_test, y_pred_tree))
+print("Decision Tree F1 Score:", f1_score(y_test, y_pred_tree))
+print("Confusion Matrix for Decision Tree:")
+print(confusion_matrix(y_test, y_pred_tree))
